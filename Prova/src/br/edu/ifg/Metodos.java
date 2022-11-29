@@ -99,8 +99,58 @@ public class Metodos {
 		return quantPronomes;
 	}
 	
-	public void pesquisarArtigos() {
+	public Map<String, Integer> pesquisarArtigos() {
+		String[] quebraArquivo = this.getPath().split(" ");
+		Map<String,String> artigos = this.getBiblioteca().getArtigos();
+		Map<String,Integer> quantArtigos = new HashMap<String, Integer>();
+		int quantA =0;
+		int quantO = 0;
+		int quantAs = 0;
+		int quantOs = 0;
 		
+		for(int i=0;i<quebraArquivo.length;i++) {
+			String[] separacao = quebraArquivo[i].split(",");
+			
+			for(int j=0;j<separacao.length;j++) {
+				
+				for(String key : artigos.keySet()) {
+					
+					if(artigos.get(key).equals(separacao[j])) {
+						if(artigos.get(key).equals("A") || 
+							artigos.get(key).equals("a")) {
+							
+							quantA++;
+						}
+						if(artigos.get(key).equals("O") || 
+								artigos.get(key).equals("o")) {
+							
+								quantO++;
+						}
+						if(artigos.get(key).equals("As") || 
+								artigos.get(key).equals("AS") ||
+								artigos.get(key).equals("as")) {
+							
+								quantAs++;
+						}
+						
+						if(artigos.get(key).equals("OS") || 
+								artigos.get(key).equals("os") ||
+								artigos.get(key).equals("Os")) {
+							
+								quantOs++;
+						}
+					}
+				}
+			}
+			
+		}
+		
+		quantArtigos.put("A", quantA);
+		quantArtigos.put("O", quantO);
+		quantArtigos.put("As", quantAs);
+		quantArtigos.put("Os", quantOs);
+		
+		return quantArtigos;
 	}
 	
 	public Biblioteca getBiblioteca() {
