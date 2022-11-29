@@ -23,18 +23,13 @@ public class Grafico extends JFrame {
 	
 	public void criarGrafico() {
 		DefaultPieDataset pizza = new DefaultPieDataset();
-		pizza.setValue("Teste", 40);
-		pizza.setValue("Teste2", 20);
-		pizza.setValue("Teste3", 40);
+		pizza.setValue("b", 5);
+		pizza.setValue("o", 200);
+		pizza.setValue("AS", 40);
 		
-		JFreeChart grafico = ChartFactory.createPieChart("testeGrafico", pizza, true, true, false);
+		JFreeChart grafico = ChartFactory.createPieChart("Grafico", pizza, true, true, false);
 		ChartPanel painel = new ChartPanel(grafico);
 		add(painel);
-	}
-
-	public static void main(String[] args) {
-		new Grafico();
-		
 	}
 
 }

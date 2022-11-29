@@ -1,5 +1,5 @@
 package br.edu.ifg.interfaces;
 
-public interface Grafico {
+public interface IGrafico {
 
 }
