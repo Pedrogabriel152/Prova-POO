@@ -93,7 +93,46 @@ public class Metodos {
 	}
 	
 	public void contadorDeSEquenciaChar(String sequencia) {
-	
+		String arquivo = this.getPath();
+		int count = 0;
+		int numeroDeVezes = 0;
+		int posicao = 0;;
+		int j = 0;
+		
+		if(sequencia.length() == 1){
+		    for(int i=0;i<arquivo.length();i++){
+		        if(arquivo.charAt(i) == sequencia.charAt(j)) {
+		        	
+				    numeroDeVezes++;
+			    }
+		    }
+		}else {
+			for(int i=0;i<arquivo.length();i++) {
+	            
+	            if(j == 0){
+					posicao = i;  
+				}
+						
+				if(arquivo.charAt(i) == sequencia.charAt(j)) {
+					count++;
+					j++;
+					
+				}
+				if(j == sequencia.length()-1) {
+						numeroDeVezes++;
+						
+						if(numeroDeVezes == 1){
+						    i = posicao+1;
+						}else{
+						    i = posicao;
+						}
+						count = 0;
+						j = 0;
+					}
+				
+			} 
+		}
+		System.out.println("A sequencia '"+sequencia+"' repete: "+numeroDeVezes+" vezes");
 	}
 	
 	public Map<String, Integer> pesquisarPronomes() {
