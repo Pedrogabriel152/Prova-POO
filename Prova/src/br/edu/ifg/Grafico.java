@@ -12,6 +12,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 public class Grafico extends JFrame {
 
+
 	public Grafico() {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setTitle("Gráfico");
@@ -23,9 +24,9 @@ public class Grafico extends JFrame {
 	
 	public void criarGrafico() {
 		DefaultPieDataset pizza = new DefaultPieDataset();
-		pizza.setValue("b", 5);
-		pizza.setValue("o", 200);
-		pizza.setValue("AS", 40);
+		pizza.setValue("Pedro", 1222);
+		pizza.setValue("Luis", 200);
+		pizza.setValue("Felipe", 40);
 		
 		JFreeChart grafico = ChartFactory.createPieChart("Grafico", pizza, true, true, false);
 		ChartPanel painel = new ChartPanel(grafico);

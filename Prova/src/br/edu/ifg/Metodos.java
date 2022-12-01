@@ -5,10 +5,91 @@ import java.util.Map;
 
 public class Metodos {
 	private Biblioteca biblioteca;
-	private String path;
+	private String path = " Visio\r\n"
+			+ " \r\n"
+			+ "\r\n"
+			+ " \r\n"
+			+ "\r\n"
+			+ "A Eras pálida. E os cabelos,a\ra\n"
+			+ " Aéreos, soltos novelos a,a\ra\n"
+			+ " Sobre as espáduas caíam\ra\n"
+			+ " Os olhos meio-cerrados\ra\n"
+			+ " A De volúpia e de ternura a\r\n"
+			+ " Entre lágrimas luziam\r\n"
+			+ " E os braços entrelaçados,\r\n"
+			+ " Como cingindo a ventura,\r\n"
+			+ " Ao teu seio me cingiram\r\n"
+			+ "\r\n"
+			+ "\r\n"
+			+ " Depois, naquele delírio,\r\n"
+			+ " Suave, doce martírio\r\n"
+			+ " De pouquíssimos instantes\r\n"
+			+ " Os teus lábios sequiosos,\r\n"
+			+ " Frios trêmulos, trocavam\r\n"
+			+ " Os beijos mais delirantes,\r\n"
+			+ " E no supremo dos gozos\r\n"
+			+ " Ante os anjos se casavam\r\n"
+			+ " Nossas almas palpitantes\r\n"
+			+ " Depois a verdade,\r\n"
+			+ " A fria realidade,\r\n"
+			+ " A solidão, a tristeza;\r\n"
+			+ " Daquele sonho desperto,\r\n"
+			+ " Olhei… silêncio de morte\r\n"
+			+ " Respirava a natureza —\r\n"
+			+ " Era a terra, era o deserto,\r\n"
+			+ " Fora-se o doce transporte,\r\n"
+			+ " Restava a   a fria certeza.\r\n"
+			+ "\r\n"
+			+ " \r\n"
+			+ " Desfizera-se a mentira:\r\n"
+			+ " Tudo aos meus olhos fugira;\r\n"
+			+ " Tu e o teu olhar ardente,\r\n"
+			+ " Lábios trêmulos e frios,\r\n"
+			+ " O abraço longo e apertado,\r\n"
+			+ " O beijo doce e veemente;\r\n"
+			+ " Restavam meus desvarios,\r\n"
+			+ " E o incessante cuidado,\r\n"
+			+ " E a fantasia doente.\r\n"
+			+ "\r\n"
+			+ "\r\nA "
+			+ "A E agora te vejo. E fria\r\na "
+			+ "A Tão outra estás da que eu via\r\nA "
+			+ " Naquele sonho encantado!\r\n"
+			+ " És outra, calma, discreta,\r\n"
+			+ " Com o olhar indiferente,\r\n"
+			+ " Tão outro do olhar sonhado,\r\n"
+			+ " Que a minha alma de poeta\r\n"
+			+ " Não vê se a imagem presente\r\n"
+			+ " Foi a imagem do passado.\r\n"
+			+ "\r\n"
+			+ "\r\n"
+			+ " Foi, sim, mas visão apenas;\r\n"
+			+ " Daquelas visões amenas\r\n"
+			+ " Que à mente dos infelizes\r\n"
+			+ " Descem vivas e animadas,\r\n"
+			+ " Cheias de luz e esperança\r\n"
+			+ " E de celestes matizes:\r\n"
+			+ " Mas, apenas dissipadas,\ra\n"
+			+ " Fica uma leve lembrança,\r\n"
+			+ " Não ficam outras raízes.\r\n"
+			+ "\r\n"
+			+ "\r\n"
+			+ " Inda assim, embora sonho,\r\n"
+			+ " Mas sonho doce e risonho,\r\n"
+			+ " Desse-me Deus que fingida\r\n"
+			+ " Tivesse aquela ventura\r\n"
+			+ " Noite por noite, hora a hora,\r\n"
+			+ " No que me resta de vida,\r\n"
+			+ " Que, já livre da amargura,\r\n"
+			+ " Alma, que em dores me chora,\r\n"
+			+ " Chorara de agradecida!\r\n"
+			+ "\r\n"
+			+ "\r\n"
+			+ "  Machado de Assis";
 	
 	public Metodos(Biblioteca biblioteca) {
 		this.biblioteca = biblioteca;
+		this.tratarArquivo();
 	}
 	
 	public void contadorDeSEquenciaChar(String sequencia) {
@@ -19,7 +100,7 @@ public class Metodos {
 		String[] quebraArquivo = this.getPath().split(" ");
 		Map<String,String> pronomes = this.getBiblioteca().getPronomes();
 		Map<String,Integer> quantPronomes = new HashMap<String, Integer>();
-		int quantEu =0;
+		int quantEu = 0;
 		int quantTu = 0;
 		int quantEle = 0;
 		int quantNos = 0;
@@ -96,6 +177,7 @@ public class Metodos {
 		quantPronomes.put("Vós", quantVos);
 		quantPronomes.put("Eles/Elas", quantEles);
 		
+		
 		return quantPronomes;
 	}
 	
@@ -141,6 +223,7 @@ public class Metodos {
 						}
 					}
 				}
+				
 			}
 			
 		}
@@ -151,6 +234,19 @@ public class Metodos {
 		quantArtigos.put("Os", quantOs);
 		
 		return quantArtigos;
+	}
+	
+	public void tratarArquivo() {
+		String arquivo = this.getPath();
+		
+		for(int i=0;i<arquivo.length();i++) {
+			
+			if(arquivo.charAt(i) == '\r' || arquivo.charAt(i) == '\n') {
+				arquivo =  arquivo.substring(0,i)+' '+arquivo.substring(i+1);
+			}
+		}
+		
+		this.setPath(arquivo);
 	}
 	
 	public Biblioteca getBiblioteca() {
