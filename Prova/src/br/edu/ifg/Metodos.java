@@ -3,21 +3,27 @@ package br.edu.ifg;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Metodos {
+import br.edu.ifg.interfaces.IMetodos;
+
+public class Metodos implements IMetodos {
 	private Biblioteca biblioteca;
+	private Arquivo arquivo;
 	private String path;
 	
-	public Metodos(Biblioteca biblioteca) {
+	public Metodos(Biblioteca biblioteca,Arquivo arquivo) {
 		this.biblioteca = biblioteca;
+		this.arquivo = arquivo;
+		this.path = arquivo.abrirArquivo();
 		this.tratarArquivo();
 	}
 	
+	@Override
 	public void contadorDeSEquenciaChar(String sequencia) {
 		String arquivo = this.getPath();
-		int count = 0;
 		int numeroDeVezes = 0;
 		int posicao = 0;;
 		int j = 0;
+		int count = 0;
 		
 		if(sequencia.length() == 1){
 		    for(int i=0;i<arquivo.length();i++){
@@ -26,7 +32,33 @@ public class Metodos {
 				    numeroDeVezes++;
 			    }
 		    }
-		}else {
+		}else if(sequencia.length() == 2){
+		    
+			for(int i=0;i<arquivo.length();i++) {
+				if(arquivo.charAt(i) == sequencia.charAt(j)){
+	               j++;
+	               count++;
+	               posicao = i;
+	               if(i < arquivo.length()-1){
+	                   if(arquivo.charAt(i+1) == sequencia.charAt(j)){
+		                   count++;
+	    	               if(count == 2){
+	    	                   numeroDeVezes++;
+	    	                   count = 0;
+	    	                   i = posicao+1;
+	    	               }
+	    	               j = 0;
+	                   }else{
+	                	   count = 0;
+	                   }
+	               }
+	           }else{
+	               j = 0;
+	               count = 0;
+	           }
+			}
+		}
+		else {
 			for(int i=0;i<arquivo.length();i++) {
 	            
 	            if(j == 0){
@@ -34,10 +66,12 @@ public class Metodos {
 				}
 						
 				if(arquivo.charAt(i) == sequencia.charAt(j)) {
-					count++;
 					j++;
 					
+				}else {
+					j = 0;
 				}
+				
 				if(j == sequencia.length()-1) {
 						numeroDeVezes++;
 						
@@ -46,15 +80,14 @@ public class Metodos {
 						}else{
 						    i = posicao;
 						}
-						count = 0;
 						j = 0;
-					}
-				
+				}
 			} 
 		}
 		System.out.println("A sequencia '"+sequencia+"' repete: "+numeroDeVezes+" vezes");
 	}
 	
+	@Override
 	public Map<String, Integer> pesquisarPronomes() {
 		String[] quebraArquivo = this.getPath().split(" ");
 		Map<String,String> pronomes = this.getBiblioteca().getPronomes();
@@ -65,6 +98,8 @@ public class Metodos {
 		int quantNos = 0;
 		int quantVos = 0;
 		int quantEles = 0;
+		int quantEla = 0;
+		int quantElas = 0;
 		
 		for(int i=0;i<quebraArquivo.length;i++) {
 			String[] separacao = quebraArquivo[i].split(",");
@@ -96,7 +131,7 @@ public class Metodos {
 								pronomes.get(key).equals("ELA") ||
 								pronomes.get(key).equals("ela")) {
 							
-								quantEle++;
+								quantEla++;
 						}
 						if(pronomes.get(key).equals("Eles") || 
 								pronomes.get(key).equals("ELES") ||
@@ -108,7 +143,7 @@ public class Metodos {
 								pronomes.get(key).equals("ELAS") ||
 								pronomes.get(key).equals("elas")) {
 							
-								quantEles++;
+								quantElas++;
 						}
 						
 						if(pronomes.get(key).equals("NÓS") || 
@@ -131,15 +166,18 @@ public class Metodos {
 		
 		quantPronomes.put("Eu", quantEu);
 		quantPronomes.put("Tu", quantTu);
-		quantPronomes.put("Ele/Ela", quantEle);
+		quantPronomes.put("Ele", quantEle);
+		quantPronomes.put("Ela", quantEla);
 		quantPronomes.put("Nós", quantNos);
 		quantPronomes.put("Vós", quantVos);
-		quantPronomes.put("Eles/Elas", quantEles);
+		quantPronomes.put("Eles", quantEles);
+		quantPronomes.put("Elas", quantElas);
 		
 		
 		return quantPronomes;
 	}
 	
+	@Override
 	public Map<String, Integer> pesquisarArtigos() {
 		String[] quebraArquivo = this.getPath().split(" ");
 		Map<String,String> artigos = this.getBiblioteca().getArtigos();
@@ -195,6 +233,7 @@ public class Metodos {
 		return quantArtigos;
 	}
 	
+	@Override
 	public void tratarArquivo() {
 		String arquivo = this.getPath();
 		
@@ -220,4 +259,14 @@ public class Metodos {
 	public void setPath(String path) {
 		this.path = path;
 	}
+
+	public Arquivo getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(Arquivo arquivo) {
+		this.arquivo = arquivo;
+	}
+	
+	
 }
