@@ -25,6 +25,7 @@ public class Metodos implements IMetodos {
 		int j = 0;
 		int count = 0;
 		
+		//Uma letra
 		if(sequencia.length() == 1){
 		    for(int i=0;i<arquivo.length();i++){
 		        if(arquivo.charAt(i) == sequencia.charAt(j)) {
@@ -40,6 +41,7 @@ public class Metodos implements IMetodos {
 	               count++;
 	               posicao = i;
 	               if(i < arquivo.length()-1){
+	            	 //Caso tenha mais de duas letras 
 	                   if(arquivo.charAt(i+1) == sequencia.charAt(j)){
 		                   count++;
 	    	               if(count == 2){
@@ -58,6 +60,7 @@ public class Metodos implements IMetodos {
 	           }
 			}
 		}
+		//Mais de 3 letras
 		else {
 			for(int i=0;i<arquivo.length();i++) {
 	            
