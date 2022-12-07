@@ -33,6 +33,7 @@ public class Metodos implements IMetodos {
 				    numeroDeVezes++;
 			    }
 		    }
+		  //Caso tenha mais de duas letras 
 		}else if(sequencia.length() == 2){
 		    
 			for(int i=0;i<arquivo.length();i++) {
@@ -41,7 +42,6 @@ public class Metodos implements IMetodos {
 	               count++;
 	               posicao = i;
 	               if(i < arquivo.length()-1){
-	            	 //Caso tenha mais de duas letras 
 	                   if(arquivo.charAt(i+1) == sequencia.charAt(j)){
 		                   count++;
 	    	               if(count == 2){
